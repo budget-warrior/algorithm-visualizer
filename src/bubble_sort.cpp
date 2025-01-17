@@ -1,23 +1,21 @@
-#include "../include/bubble_sort.hpp"
+#include <bubble_sort.hpp>
 
 namespace bubble_sort
 {
-    std::vector<int> sort(std::vector<int> v)
+    std::vector<int> sort(std::vector<int>& v, std::function<void(std::vector<int>)> callback)
     {
         bool swapped = false;
 
         for (int i = 0; i < v.size() - 1; i++)
         {
+            swapped = false;
+
             for (int j = 0; j < v.size() - 1; j++)
             {
                 if (v[j] > v[j + 1])
                 {
-                    utils::print_vector(v);
-                    std::this_thread::sleep_for(std::chrono::milliseconds(1500));
-
-                    int temp = v[j];
-                    v[j] = v[j + 1];
-                    v[j + 1] = temp;
+                    callback(v);
+                    std::swap(v[j], v[j + 1]);
 
                     swapped = true;
                 }
@@ -28,8 +26,7 @@ namespace bubble_sort
                 break;
         }
 
-        utils::print_vector(v);
-
+        callback(v);
         return v;
     }
 }

@@ -8,7 +8,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build)
 
-include_directories(include)
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 add_library(bubble_sort src/bubble_sort.cpp)
 add_library(utils src/utils.cpp)
