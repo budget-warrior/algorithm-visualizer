@@ -1,6 +1,7 @@
 #include <iostream>
 #include <utils.hpp>
 #include <bubble_sort.hpp>
+#include <quick_sort.hpp>
 #include <thread>
 #include <chrono>
 
@@ -17,6 +18,7 @@ int main()
 
     std::cout << "Choose an algorithm to sort the array:\n";
     std::cout << "1. Bubble Sort\n";
+    std::cout << "2. Quick Sort\n";
 
     int choice;
     std::cin >> choice;
@@ -24,6 +26,10 @@ int main()
     if (choice == 1)
     {
         bubble_sort::sort(v_ref, callback);
+    }
+    else if (choice == 2)
+    {
+        quick_sort::sort(v_ref, callback);
     }
     else
     {
