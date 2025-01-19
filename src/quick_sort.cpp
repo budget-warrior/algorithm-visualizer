@@ -4,6 +4,7 @@ namespace quick_sort
 {
     std::vector<int> sort(std::vector<int>& v, std::function<void(std::vector<int>)> callback)
     {
+        // FIXME: if two elements are equal to each other the returned array will only include one of them
         int pivot = v[v.size() - 1]; // Pivot is the last element of the vector
         std::cout << "Pivot:\n";
         callback({pivot});
