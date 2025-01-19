@@ -6,7 +6,14 @@ namespace utils
     {
         for (int i = 0; i < v.size(); i++)
         {
-            std::cout << "----";
+            if (v[i] < 10)
+            {
+               std::cout << "----";
+            }
+            else
+            {
+                std::cout << "-----";
+            }
         }
 
         std::cout << "\n| ";
@@ -20,7 +27,14 @@ namespace utils
 
         for (int i = 0; i < v.size(); i++)
         {
-            std::cout << "----";
+            if (v[i] < 10)
+            {
+               std::cout << "----";
+            }
+            else
+            {
+                std::cout << "-----";
+            }
         }
 
         std::cout << '\n';

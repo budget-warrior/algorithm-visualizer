@@ -14,7 +14,7 @@ void callback(std::vector<int> v)
 
 int main()
 {
-    std::vector<int> v = {9, 7, 1, 5, 1};
+    std::vector<int> v = {12, 5, 13, 5, 6, 7};
     std::vector<int>& v_ref = v;
 
     std::cout << "Choose an algorithm to sort the array:\n";
@@ -31,7 +31,8 @@ int main()
     }
     else if (choice == 2)
     {
-        quick_sort::sort(v_ref, callback);
+        std::cout << "Pivot: " << v[v.size() - 1] << '\n';
+        quick_sort::sort(v_ref, 0, v.size() - 1, callback);
     }
     else if (choice == 3)
     {

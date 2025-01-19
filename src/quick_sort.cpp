@@ -2,52 +2,37 @@
 
 namespace quick_sort
 {
-    std::vector<int> sort(std::vector<int>& v, std::function<void(std::vector<int>)> callback)
+    int partition(std::vector<int>& v, int low, int high, std::function<void(std::vector<int>)> callback)
     {
-        // FIXME: if two elements are equal to each other the returned array will only include one of them
-        int pivot = v[v.size() - 1]; // Pivot is the last element of the vector
-        std::cout << "Pivot:\n";
-        callback({pivot});
+        int i = low - 1; // The right position of the pivot
 
-        std::vector<int> left; // Elements less than pivot
-        std::vector<int> right; // Elements greater than pivot
-
-        for (const int n : v)
+        for (int j = low; j <= high - 1; j++)
         {
-            if (n < pivot)
+            if (v[j] < v[high])
             {
-                left.push_back(n);
-            }
-            else if (n > pivot)
-            {
-                right.push_back(n);
+                i++;
+                std::swap(v[i], v[j]);
+                callback(v);
             }
         }
 
-        std::vector<int> sorted;
-        sorted.insert(sorted.end(), left.begin(), left.end());
-        sorted.push_back(pivot);
-        sorted.insert(sorted.end(), right.begin(), right.end());
+        std::swap(v[i + 1], v[high]);
 
-        if (left.size() > 1)
+        return i + 1;
+    }
+
+    std::vector<int> sort(std::vector<int>& v, int low, int high, std::function<void(std::vector<int>)> callback)
+    {
+        if (low < high)
         {
-            callback(sorted);
-            left = sort(left, callback);
+            int pivot = partition(v, low, high, callback);
+            std::cout << "Pivot: " << v[pivot] << '\n';
+
+            sort(v, low, pivot - 1, callback);
+            sort(v, pivot + 1, high, callback);
         }
-
-        if (right.size() > 1)
-        {
-            callback(sorted);
-            right = sort(right, callback);
-        }
-
-        // TODO: is there a better way to do this?
-        sorted.clear();
-        sorted.insert(sorted.end(), left.begin(), left.end());
-        sorted.push_back(pivot);
-        sorted.insert(sorted.end(), right.begin(), right.end());
-
-        callback(sorted);
-        return sorted;
+        
+        callback(v);
+        return v;
     }
 } // namespace quick_sort
